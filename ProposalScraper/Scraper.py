@@ -41,6 +41,7 @@ for counter in range(pageToStartScrapping, 138):
 			proposalElements.append(str(tdElementCleaned))
 	for proposalElement in proposalElements:
 		if('FP/' in proposalElement):
+			print('Currently Scrapping Proposal: ' + proposalElement)
 			csvFile.write('\n')
 		csvFile.write(proposalElement)
 		csvFile.write('\t')
