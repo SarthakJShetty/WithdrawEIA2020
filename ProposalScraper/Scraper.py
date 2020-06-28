@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import time
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup as bs
 
 url = 'http://forestsclearance.nic.in/Wildnew_Online_Status_New.aspx'
