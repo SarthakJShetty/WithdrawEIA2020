@@ -5,7 +5,11 @@ from bs4 import BeautifulSoup as bs
 
 url = 'http://forestsclearance.nic.in/Wildnew_Online_Status_New.aspx'
 
-browser = webdriver.Chrome()
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+browser = webdriver.Chrome(chrome_options=chrome_options)
 browser.get(url)
 browser.find_element_by_id('ctl00_ContentPlaceHolder1_Button1').click()
 time.sleep(5)
