@@ -30,6 +30,7 @@ if pageToStartScrapping != 1:
 		time.sleep(timeToSleep)
 
 for counter in range(pageToStartScrapping, 138):
+	print('Page Number: '+ str(counter))
 	proposalElements = []
 	csvFile = open('proposal.csv', 'a')
 	htmlCode = browser.page_source
