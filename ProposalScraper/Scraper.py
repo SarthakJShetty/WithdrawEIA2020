@@ -11,9 +11,9 @@ timeToSleep = 5
 pageToStartScrapping = 1
 
 chrome_options = Options()
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--disable-dev-shm-usage')
+# chrome_options.add_argument('--headless')
+# chrome_options.add_argument('--no-sandbox')
+# chrome_options.add_argument('--disable-dev-shm-usage')
 browser = webdriver.Chrome(chrome_options=chrome_options)
 browser.get(url)
 browser.find_element_by_id('ctl00_ContentPlaceHolder1_Button1').click()
@@ -24,13 +24,17 @@ if pageToStartScrapping != 1:
 		browser.find_element_by_link_text(str(pageToStartScrapping)).click()
 		time.sleep(timeToSleep)
 	except NoSuchElementException:
-		browser.find_element_by_link_text("...").click()
-		time.sleep(timeToSleep)
-		browser.find_element_by_link_text(str(pageToStartScrapping)).click()
-		time.sleep(timeToSleep)
+		if pageToStartScrapping <=11:
+			browser.find_element_by_link_text("...").click()
+			time.sleep(timeToSleep)
+		else:
+			browser.find_elements_by_link_text("...")[1].click()
+			time.sleep(timeToSleep)
+			browser.find_element_by_link_text(str(pageToStartScrapping)).click()
+			time.sleep(timeToSleep)
 
 for counter in range(pageToStartScrapping, 138):
-	print('Page Number: '+ str(counter))
+	print("Page Number: " + str(counter))
 	proposalElements = []
 	csvFile = open('proposal.csv', 'a')
 	htmlCode = browser.page_source
@@ -50,5 +54,9 @@ for counter in range(pageToStartScrapping, 138):
 		browser.find_element_by_link_text(str(counter+1)).click()
 		time.sleep(timeToSleep)
 	except NoSuchElementException:
-		browser.find_element_by_link_text("...").click()
-		time.sleep(timeToSleep)
+		if counter <= 10:
+			browser.find_element_by_link_text("...").click()
+			time.sleep(timeToSleep)
+		else:
+			browser.find_elements_by_link_text("...")[1].click()
+			time.sleep(timeToSleep)
